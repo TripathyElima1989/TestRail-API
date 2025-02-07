@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test Run Viewer</title>
+  <link rel="stylesheet" href="styles.css"> <!-- Link to the external CSS file -->
+</head>
+<body>
+  <h1>Gate3 QA Security Team Test Runs</h1>
+  
+  <!-- Placeholder for loading indicator -->
+  <div id="loading" class="loading">Loading test runs...</div>
+
+  <!-- This will display the test run data -->
+  <div id="testRuns"></div>
+
+  <script>
+    // Fetch data from your API endpoint
+    async function fetchTestRuns() {
+      try {
+        const response = await fetch('http://localhost:3000/api/testruns');
+        const testRuns = await response.json();
+
+        // Hide loading indicator
+        document.getElementById('loading').style.display = 'none';
+
+        // Get the container where we will display the test run data
+        const testRunsContainer = document.getElementById('testRuns');
+
+        // Check if there are test runs to display
+        if (testRuns.length === 0) {
+          testRunsContainer.innerHTML = '<p>No test runs available.</p>';
+          return;
+        }
+
+        // Loop through the test runs and display them
+        testRuns.forEach((testRun) => {
+          const div = document.createElement('div');
+          div.classList.add('test-run');
+          div.innerHTML = `
+            <strong>${testRun.name}</strong>
+            ${testRun.description ? `<p>${testRun.description}</p>` : ''}
+            <a href="${testRun.url}" target="_blank">View Test Run</a><br>
+            <span class="status ${testRun.isCompleted ? 'completed' : 'in-progress'}">
+              ${testRun.isCompleted ? 'Completed' : 'In Progress'}
+            </span><br>
+            Passed: ${testRun.passedCount} | Failed: ${testRun.failedCount} | Untested: ${testRun.untestedCount}
+          `;
+          testRunsContainer.appendChild(div);
+        });
+      } catch (error) {
+        console.error('Error fetching test runs:', error);
+        document.getElementById('loading').innerHTML = 'Failed to load test runs. Please try again later.';
+      }
+    }
+
+    // Call the fetchTestRuns function when the page loads
+    window.onload = fetchTestRuns;
+  </script>
+</body>
+</html>

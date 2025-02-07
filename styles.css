@@ -1,0 +1,101 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Overall Page Styles */
+  body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    line-height: 1.6;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  h1 {
+    color: #333;
+    font-size: 2em;
+    margin-bottom: 20px;
+    font-weight: 600;
+    text-align: center;
+  }
+  
+  /* Test Run container */
+  #testRuns {
+    width: 100%;
+    max-width: 800px;
+  }
+  
+  /* Test Run Item */
+  .test-run {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 15px;
+    transition: transform 0.3s ease;
+  }
+  
+  .test-run:hover {
+    transform: translateY(-5px);
+  }
+  
+  .test-run a {
+    color: #4285f4;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  
+  .test-run a:hover {
+    text-decoration: underline;
+  }
+  
+  .test-run strong {
+    font-size: 1.2em;
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 600;
+  }
+  
+  .test-run p {
+    font-size: 1em;
+    margin-bottom: 10px;
+    color: #555;
+  }
+  
+  .test-run .status {
+    font-weight: 600;
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 0.9em;
+  }
+  
+  .test-run .status.completed {
+    background-color: #28a745;
+    color: white;
+  }
+  
+  .test-run .status.in-progress {
+    background-color: #ffc107;
+    color: white;
+  }
+  
+  .test-run .status.pending {
+    background-color: #6c757d;
+    color: white;
+  }
+  
+  /* Loading Indicator */
+  .loading {
+    text-align: center;
+    font-size: 18px;
+    color: #555;
+    margin-top: 20px;
+  }
+  
